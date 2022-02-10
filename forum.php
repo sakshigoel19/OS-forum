@@ -4,9 +4,12 @@
 		<title>OS Visual Studio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="landing is-preload">
+
+		<?php include 'partials/_dbconnect.php';?>
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -16,7 +19,7 @@
 						<ul>
 							<li><a href="index.html">Home</a></li>
 							<li>
-								<a href="#os-algorithms" class="icon solid fa-angle-down">OS Algorithms</a>
+								<a href="index.html#os-algorithms" class="icon solid fa-angle-down">OS Algorithms</a>
 								<ul>
 									<li>
 										<a href="generic.html">CPU Scheduling</a>
@@ -81,98 +84,56 @@
 							<li><a href="index.html">Tutorial</a></li>
 							<li><a href="forum.php">Discussion Forum</a></li>
 							<li><a href="contact.html">Contact</a></li>
+							<li><a href="#" class="button">Login</a></li>
 							<li><a href="#" class="button">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>
 
 			<!-- Banner -->
-				<section id="banner">
-					<h2>OS Visual Studio</h2>
-					<p>Simulator for visualization of all algorithms in Operating Systems.</p>
+				<section id="banner" style="background-image: url('images/pic04.jpg'); background-size:cover;">
+					<h2>OS Visual Studio | Discussion Forum</h2>
+					<p>A dedicated forum to solve all your doubts related to operating systems and it's algorithms.</p>
+					<p>Search keywords related to your query:</p>
 					<ul class="actions special">
-						<li><a href="#" class="button primary">Login</a></li>
-						<li><a href="#" class="button">Learn More</a></li>
+						<form method="post" action="#">
+							<div class="row gtr-uniform gtr-50">
+								<div class="col-9 col-12-mobilep">
+									<input type="text" name="query" id="query" value="" placeholder="Query" style="color:black;"/>
+								</div>
+								<div class="col-3 col-12-mobilep">
+									<input type="submit" value="Search" class="fit" />
+								</div>
+							</div>
+						</form>
 					</ul>
 				</section>
 
 			<!-- Main -->
 				<section id="main" class="container">
 
-					<section class="box special">
-						<header class="major">
-							<h2>Introduction To OS Algoritms & Their Visualization</h2>
-							<p>With the growth of technologies and the introduction of higher quality media, the requirement for web applications that aid in content visualisation has skyrocketed. Operating Systems being such an important part of daily life, there arises a need wherein an application can help visualise all the popular Operating System algorithms. Therefore, we've created a robust application on similar lines that can gather data for various analyses using simulations with utmost efficiency and in a 100% error-free manner. The project features six categories of algorithms which includes CPU Scheduling, Disk Scheduling, Page Replacement, Deadlock Avoidance, Deadlock Detection and Memory Allocation Techniques. In a category a user can select an algorithm of its choice available in it. Selected Algorithm will be displayed with brief description and sub techniques and then the user can simulate its working. The output will be generated in the form of graphs, charts and tables.</p>
-						</header>
-					</section>
 					<section id="os-algorithms" class="container">
 						<div class="row">
-							<div class="col-6 col-12-narrower">
+							<!-- FETCH ALL THE MODULES FROM DATABASE -->
+							<?php 
+							$sql = "SELECT * FROM `modules`";
+							$result = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($result)){
+								$mod = $row['module_name'];
+								$desc = $row['module_description'];
+								echo '<div class="col-6 col-12-narrower">
+										<section class="box special">
+											<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
+											<h3>' . $mod . '</h3>
+											<p>' . $desc . '</p>
+											<ul class="actions special">
+											<li><a href="#" class="button alt">View Questions</a></li>
+											</ul>
+										</section>
+									</div>';
 
-								<section class="box special">
-									<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-									<h3>CPU Scheduling</h3>
-									<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-									<ul class="actions special">
-									<li><a href="#" class="button alt">Learn More</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-6 col-12-narrower">
-
-								<section class="box special">
-									<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-									<h3>Page Replacement</h3>
-									<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button alt">Learn More</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-6 col-12-narrower">
-
-								<section class="box special">
-									<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-									<h3>Disk Scheduling</h3>
-									<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button alt">Learn More</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-6 col-12-narrower">
-
-								<section class="box special">
-									<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-									<h3>Deadlock Avoidance</h3>
-									<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button alt">Learn More</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-6 col-12-narrower">
-
-								<section class="box special">
-									<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-									<h3>Deadlock Detection</h3>
-									<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button alt">Learn More</a></li>
-									</ul>
-								</section>
-							</div>
-							<div class="col-6 col-12-narrower">
-
-								<section class="box special">
-									<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-									<h3>Memory Allocation</h3>
-									<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-									<ul class="actions special">
-										<li><a href="#" class="button alt">Learn More</a></li>
-									</ul>
-								</section>
-							</div>
+							}
+							?>
 						</div>
 					</section>
 				</section>
