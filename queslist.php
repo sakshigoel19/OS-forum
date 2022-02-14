@@ -8,17 +8,18 @@
 
 		<link rel="stylesheet" href="assets/css/main1.css" />
 	</head>
+
 	<body class="landing is-preload">
     <?php include 'partials/_dbconnect.php';?>
+
     <?php
-    $id = $_GET['modid'];
-    $sql = "SELECT * FROM `modules` WHERE module_id=$id"; 
-    $result = mysqli_query($conn, $sql);
-    while($row = mysqli_fetch_assoc($result)){
-        $modname = $row['module_name'];
-        $modesc = $row['module_description'];
-    }
-    
+    	$id = $_GET['modid'];
+    	$sql = "SELECT * FROM `modules` WHERE module_id=$id"; 
+    	$result = mysqli_query($conn, $sql);
+    	while($row = mysqli_fetch_assoc($result)){
+        	$modname = $row['module_name'];
+        	$modesc = $row['module_description'];
+    	}
     ?>
     
 		<div id="page-wrapper">
@@ -114,14 +115,34 @@
 	                  <div class="firstDiv">
 		               <h1><b> Browse Questions</b> </h1>
 
-                      
-					   <div class="media">
+                      <?php 
+							$id = $_GET['modid'];	
+							$sql = "SELECT * FROM `questions` WHERE ques_mod_id=$id"; 
+							$result = mysqli_query($conn, $sql);
+
+							while($row = mysqli_fetch_assoc($result)){
+								$id = $row['ques_id'];
+        						$title = $row['ques_title'];
+        						$desc = $row['ques_desc'];
+
+								echo '<div class="media">
+								<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
+								   <b><a href="thread.php">'. $title . '</a></b> 
+								  <div class="mt">
+								  <p> '. $desc . ' </p>
+								</div>
+							  </div>';
+							}
+					  ?>
+
+					<!-- LEFT HERE JUST FOR REFERENCE OF HTML -->
+					   <!-- <div class="media">
 						<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
 						   <b>What is CPU Scheduling?</b> 
 						  <div class="mt">
 						  <p> CPU Scheduling is a process of determining which process will own CPU for execution while another process is on hold.</p>
 						</div>
-					  </div>
+					  </div> -->
                       
 	               </div>
                        </div>
