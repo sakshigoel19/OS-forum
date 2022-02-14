@@ -4,12 +4,23 @@
 		<title>OS Visual Studio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> -->
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="assets/css/main1.css" />
 	</head>
 	<body class="landing is-preload">
-
-		<?php include 'partials/_dbconnect.php';?>
+    <?php include 'partials/_dbconnect.php';?>
+    <?php
+    $id = $_GET['modid'];
+    $sql = "SELECT * FROM `modules` WHERE module_id=$id"; 
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)){
+        $modname = $row['module_name'];
+        $modesc = $row['module_description'];
+    }
+    
+    ?>
+    
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -19,7 +30,7 @@
 						<ul>
 							<li><a href="index.html">Home</a></li>
 							<li>
-								<a href="index.html#os-algorithms" class="icon solid fa-angle-down">OS Algorithms</a>
+								<a href="#os-algorithms" class="icon solid fa-angle-down">OS Algorithms</a>
 								<ul>
 									<li>
 										<a href="generic.html">CPU Scheduling</a>
@@ -84,79 +95,38 @@
 							<li><a href="index.html">Tutorial</a></li>
 							<li><a href="forum.php">Discussion Forum</a></li>
 							<li><a href="contact.html">Contact</a></li>
-							<li><a href="#" class="button">Login</a></li>
 							<li><a href="#" class="button">Sign Up</a></li>
 						</ul>
 					</nav>
 				</header>
 
 			<!-- Banner -->
-				<section id="banner" style="background-image: url('images/pic04.jpg'); background-size:cover;">
-					<h2>OS Visual Studio | Discussion Forum</h2>
-					<p>A dedicated forum to solve all your doubts related to operating systems and it's algorithms.</p>
-					<p>Search keywords related to your query:</p>
+				<section id="banner">
+					<h2><?php echo $modname;?></h2>
+					<p><?php echo $modesc;?></p>
 					<ul class="actions special">
-						<form method="post" action="#">
-							<div class="row gtr-uniform gtr-50">
-								<div class="col-9 col-12-mobilep">
-									<input type="text" name="query" id="query" value="" placeholder="Query" style="color:black;"/>
-								</div>
-								<div class="col-3 col-12-mobilep">
-									<input type="submit" value="Search" class="fit" />
-								</div>
-							</div>
-						</form>
+						
 					</ul>
 				</section>
 
-			<!-- Main -->
-				<section id="main" class="container">
+     			<!-- Main -->	
+                      <div class="container">
+	                  <div class="firstDiv">
+		               <h1><b> Browse Questions</b> </h1>
 
-					<section id="os-algorithms" class="container">
-						<div class="row">
-							<!-- FETCH ALL THE MODULES FROM DATABASE -->
-							<?php 
-							$sql = "SELECT * FROM `modules`";
-							$result = mysqli_query($conn, $sql);
-							while($row = mysqli_fetch_assoc($result)){
-								$id = $row['module_id'];
-								$mod = $row['module_name'];
-								$desc = $row['module_description'];
-								echo '<div class="col-6 col-12-narrower">
-										<section class="box special">
-											<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-											<h3><a href="queslist.php?modid=' . $id . '">' . $mod . '</a></h3>
-											<p>' . $desc . '</p>
-											<ul class="actions special">
-											<li><a href="queslist.php?modid=' . $id . '" class="button alt">View Questions</a></li>
-											</ul>
-										</section>
-									</div>';
-									
-							}
-							?>
+                      
+					   <div class="media">
+						<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
+						   <b>What is CPU Scheduling?</b> 
+						  <div class="mt">
+						  <p> CPU Scheduling is a process of determining which process will own CPU for execution while another process is on hold.</p>
 						</div>
-					</section>
-				</section>
+					  </div>
+                      
+	               </div>
+                       </div>
+					   
 
-			<!-- CTA -->
-				<section id="cta">
-
-					<h2>Sign up for beta access</h2>
-					<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-
-					<form>
-						<div class="row gtr-50 gtr-uniform">
-							<div class="col-8 col-12-mobilep">
-								<input type="email" name="email" id="email" placeholder="Email Address" />
-							</div>
-							<div class="col-4 col-12-mobilep">
-								<input type="submit" value="Sign Up" class="fit" />
-							</div>
-						</div>
-					</form>
-
-				</section>
 
 			<!-- Footer -->
 				<footer id="footer">
