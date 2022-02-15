@@ -4,28 +4,27 @@
 		<title>OS Visual Studio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 		<link rel="stylesheet" href="assets/css/main1.css" />
 	</head>
 
 	<body class="landing is-preload">
     <?php include 'partials/_dbconnect.php';?>
-
-    <?php
-    	$id = $_GET['modid'];
-    	$sql = "SELECT * FROM `modules` WHERE module_id=$id"; 
-    	$result = mysqli_query($conn, $sql);
-    	while($row = mysqli_fetch_assoc($result)){
-        	$modname = $row['module_name'];
-        	$modesc = $row['module_description'];
-    	}
-    ?>
     
+	<?php
+    $id = $_GET['quesid'];
+    $sql = "SELECT * FROM `questions` WHERE ques_id=$id"; 
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)){
+        $title = $row['ques_title'];
+        $desc = $row['ques_desc'];
+    }
+	?>
 		<div id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header" class="alt">
+				<header id="header" class="alt" style="background-color:#575556;">
 					<h1><a href="index.html">OS</a> Visual Studio</h1>
 					<nav id="nav">
 						<ul>
@@ -102,20 +101,22 @@
 				</header>
 
 			<!-- Banner -->
-				<section id="banner">
-					<h2><?php echo $modname;?></h2>
-					<p><?php echo $modesc;?></p>
-					<ul class="actions special">
-						
-					</ul>
-				</section>
-
+            <section id="main" class="container" >
+            <section class="box special" style="margin-top:25%;">
+				<header class="major">
+					<h1 style="text-align:left;"><b>Posted By : Sakshi</b></h1>
+					<h2><?php echo $title;?></h2>
+					<p><?php echo $desc;?></p>
+					<br>
+				</header>
+			</section>
+            </section>
      			<!-- Main -->	
-                      <div class="container" id="os-algorithms">
+                      <div class="container">
 	                  <div class="firstDiv">
-		               <h1><b> Browse Questions</b> </h1>
+		               <h1><b> View Discussions</b> </h1>
 
-                      <?php 
+                      <!--<?php 
 							$id = $_GET['modid'];	
 							$sql = "SELECT * FROM `questions` WHERE ques_mod_id=$id"; 
 							$result = mysqli_query($conn, $sql);
@@ -127,13 +128,13 @@
 
 								echo '<div class="media">
 								<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
-								   <b><a href="question.php?quesid=' . $id. '">'. $title . '</a></b> 
+								   <b><a href="question.php">'. $title . '</a></b> 
 								  <div class="mt">
 								  <p> '. $desc . ' </p>
 								</div>
 							  </div>';
 							}
-					  ?>
+					  ?> -->
 
 					<!-- LEFT HERE JUST FOR REFERENCE OF HTML -->
 					   <!-- <div class="media">
@@ -143,10 +144,9 @@
 						  <p> CPU Scheduling is a process of determining which process will own CPU for execution while another process is on hold.</p>
 						</div>
 					  </div> -->
-					  
                       
 	               </div>
-                       </div>
+                       </div> 
 					   
 
 
