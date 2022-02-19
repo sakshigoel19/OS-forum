@@ -5,7 +5,9 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		
 		<link rel="stylesheet" href="assets/css/main1.css" />
 	</head>
 
@@ -111,6 +113,20 @@
 				</section>
 
      			<!-- Main -->	
+
+				 <div class="container">
+            <h1 class="py-2">Start a Discussion</h1> 
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Problem Title</label>
+                    <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Ellaborate Your Concern</label>
+                    <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-warning">Submit</button>
+            </form>
+        </div>
                       <div class="container" id="os-algorithms">
 	                  <div class="firstDiv">
 		               <h1><b> Browse Questions</b> </h1>
@@ -119,21 +135,35 @@
 							$id = $_GET['modid'];	
 							$sql = "SELECT * FROM `questions` WHERE ques_mod_id=$id"; 
 							$result = mysqli_query($conn, $sql);
-
+							$noResult = true;
 							while($row = mysqli_fetch_assoc($result)){
-								$id = $row['ques_id'];
-        						$title = $row['ques_title'];
-        						$desc = $row['ques_desc'];
+								$noResult = false;
+                                $id = $row['ques_id'];
+                                $title = $row['ques_title'];
+                                $desc = $row['ques_desc']; 
+    
 
 								echo '<div class="media">
 								<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
+								<div class="mta">
 								   <b><a href="question.php?quesid=' . $id. '">'. $title . '</a></b> 
-								  <div class="mt">
 								  <p> '. $desc . ' </p>
 								</div>
 							  </div>';
 							}
-					  ?>
+					         
+							if($noResult){
+								echo '<div class="jumbotron" style="background-color:#D3D3D3">
+										<div class="container-1">
+											<p class="display-4">No Results Found</p>
+											<p class="lead"> Be the first person to ask a question</p>
+										</div>
+									 </div> ';
+							}
+							?>
+							
+	
+					
 
 					<!-- LEFT HERE JUST FOR REFERENCE OF HTML -->
 					   <!-- <div class="media">

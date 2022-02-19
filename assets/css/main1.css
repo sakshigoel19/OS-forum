@@ -2684,10 +2684,18 @@
 	font-size: 16px;
 	text-indent: 3px;
 }
-.mt{
-	font-size:14px;
-	margin-left: 34px;
+.mta{
+	font: 50px;
+	margin-left:10px;
 }
+
+
+
+.jumbotron
+{   
+      margin-top:10px;
+	padding:0px;
+ }
 /* Table */
 
 	.table-wrapper {

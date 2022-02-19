@@ -116,12 +116,13 @@
 	                  <div class="firstDiv">
 		               <h1><b> View Discussions</b> </h1>
 
-                      <!--<?php 
-							$id = $_GET['modid'];	
+                      <?php 
+							$id = $_GET['quesid'];	
 							$sql = "SELECT * FROM `questions` WHERE ques_mod_id=$id"; 
 							$result = mysqli_query($conn, $sql);
-
+                             $noResult=true;
 							while($row = mysqli_fetch_assoc($result)){
+								$noResult=false;
 								$id = $row['ques_id'];
         						$title = $row['ques_title'];
         						$desc = $row['ques_desc'];
@@ -134,7 +135,15 @@
 								</div>
 							  </div>';
 							}
-					  ?> -->
+							if($noResult){
+								echo '<div class="jumbotron" style="background-color:#D3D3D3">
+										<div class="container-1">
+											<p class="display-4">No Results Found</p>
+											<p class="lead"> Be the first person to ask a question</p>
+										</div>
+									 </div> ';
+							}
+					  ?> 
 
 					<!-- LEFT HERE JUST FOR REFERENCE OF HTML -->
 					   <!-- <div class="media">
