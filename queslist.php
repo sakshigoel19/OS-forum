@@ -112,21 +112,33 @@
 					</ul>
 				</section>
 
+				<?php
+					$method = $_SERVER['REQUEST_METHOD'];
+					if($method=='POST'){
+						$q_title = $_POST['title'];
+        				$q_desc = $_POST['desc'];
+
+					$sql = "INSERT INTO `questions` (`ques_title`, `ques_desc`, `ques_mod_id`, `ques_user_id`, `ask_time`) VALUES ( '$q_title', '$q_desc', '$id', '0', current_timestamp())";
+
+					$result = mysqli_query($conn, $sql);
+					}
+				?>
      			<!-- Main -->	
 
-				 <div class="container">
-            <h1 class="py-2">Start a Discussion</h1> 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Problem Title</label>
-                    <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Ellaborate Your Concern</label>
-                    <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-warning">Submit</button>
-            </form>
-        </div>
+					<div class="container">
+					<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" autocomplete="off">
+						<h2 class="py-2">Start a Discussion</h2> 
+						<div class="form-group">
+							<label for="exampleInputEmail1">Problem Title</label>
+							<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+						</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Elaborate Your Concern</label>
+							<textarea id="message" name="desc" rows="6"></textarea>
+						</div>
+						<input type="submit" value="Submit" />
+					</form>
+					</div>
                       <div class="container" id="os-algorithms">
 	                  <div class="firstDiv">
 		               <h1><b> Browse Questions</b> </h1>
@@ -153,12 +165,12 @@
 							}
 					         
 							if($noResult){
-								echo '<div class="jumbotron" style="background-color:#D3D3D3">
+								echo '<blockquote><div class="jumbotron" style="background-color:#d8d4d4">
 										<div class="container-1">
-											<p class="display-4">No Results Found</p>
-											<p class="lead"> Be the first person to ask a question</p>
+											<p class="display-5"style="margin:2%; padding:1%">No Results Found</p>
+											<p class="lead" style="margin:2%; padding:1%"> Be the first person to ask a question</p>
 										</div>
-									 </div> ';
+									 </div></blockquote>';
 							}
 							?>
 							
