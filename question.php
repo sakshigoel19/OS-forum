@@ -112,36 +112,46 @@
 			</section>
             </section>
      			<!-- Main -->	
+
+				 <div class="container">
+					<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" autocomplete="off">
+						<h2 class="py-2">Post a Reply</h2> 
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Type your reply</label>
+							<textarea id="message" name="reply" rows="6"></textarea>
+						</div>
+						<input type="submit" value="Submit" />
+					</form>
+					</div>
+
                       <div class="container">
 	                  <div class="firstDiv">
 		               <h1><b> View Discussions</b> </h1>
 
                       <?php 
 							$id = $_GET['quesid'];	
-							$sql = "SELECT * FROM `questions` WHERE ques_mod_id=$id"; 
+							$sql = "SELECT * FROM `replies` WHERE reply_ques_id=$id"; 
 							$result = mysqli_query($conn, $sql);
                              $noResult=true;
 							while($row = mysqli_fetch_assoc($result)){
 								$noResult=false;
-								$id = $row['ques_id'];
-        						$title = $row['ques_title'];
-        						$desc = $row['ques_desc'];
+								$id = $row['reply_id'];
+        						$content = $row['reply_content'];
 
 								echo '<div class="media">
 								<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
-								   <b><a href="question.php">'. $title . '</a></b> 
 								  <div class="mt">
-								  <p> '. $desc . ' </p>
+								  <p> '. $content . ' </p>
 								</div>
 							  </div>';
 							}
 							if($noResult){
-								echo '<div class="jumbotron" style="background-color:#D3D3D3">
+								echo '<blockquote><div class="jumbotron" style="background-color:#d8d4d4">
 										<div class="container-1">
-											<p class="display-4">No Results Found</p>
-											<p class="lead"> Be the first person to ask a question</p>
+											<p class="display-5"style="margin:2%; padding:1%">No Results Found</p>
+											<p class="lead" style="margin:2%; padding:1%"> Be the first person to ask a question</p>
 										</div>
-									 </div> ';
+							 		</div></blockquote>';
 							}
 					  ?> 
 

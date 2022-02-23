@@ -130,11 +130,11 @@
 						<h2 class="py-2">Start a Discussion</h2> 
 						<div class="form-group">
 							<label for="exampleInputEmail1">Problem Title</label>
-							<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+							<input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" required>
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlTextarea1">Elaborate Your Concern</label>
-							<textarea id="message" name="desc" rows="6"></textarea>
+							<textarea id="message" name="desc" rows="6" required></textarea>
 						</div>
 						<input type="submit" value="Submit" />
 					</form>
