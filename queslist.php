@@ -111,8 +111,9 @@
 						
 					</ul>
 				</section>
-
+                  
 				<?php
+				$showAlert=false;
 					$method = $_SERVER['REQUEST_METHOD'];
 					if($method=='POST'){
 						$q_title = $_POST['title'];
@@ -121,12 +122,22 @@
 					$sql = "INSERT INTO `questions` (`ques_title`, `ques_desc`, `ques_mod_id`, `ques_user_id`, `ask_time`) VALUES ( '$q_title', '$q_desc', '$id', '0', current_timestamp())";
 
 					$result = mysqli_query($conn, $sql);
+					$showAlert=true;
+					if($showAlert)
+					{
+						echo ' <div class="alert alert-success alert-dismissible fade show shadow">
+                        <strong>Success!</strong> Your thread has been added! Please wait for community to respond
+                        <button type="button" class="btn-close" data-bs-dismiss="alert">
+                        </button>
+                  </div>';
+						
+					}
 					}
 				?>
      			<!-- Main -->	
 
 					<div class="container">
-					<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" autocomplete="off">
+					<form action="<?php echo $_SERVER["REQUEST_URI"]?>" method="post">
 						<h2 class="py-2">Start a Discussion</h2> 
 						<div class="form-group">
 							<label for="exampleInputEmail1">Problem Title</label>
@@ -142,7 +153,7 @@
                       <div class="container" id="os-algorithms">
 	                  <div class="firstDiv">
 		               <h1><b> Browse Questions</b> </h1>
-
+  
                       <?php 
 							$id = $_GET['modid'];	
 							$sql = "SELECT * FROM `questions` WHERE ques_mod_id=$id"; 
@@ -173,8 +184,7 @@
 									 </div></blockquote>';
 							}
 							?>
-							
-	
+						
 					
 
 					<!-- LEFT HERE JUST FOR REFERENCE OF HTML -->
@@ -217,6 +227,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	</body>
 </html>
