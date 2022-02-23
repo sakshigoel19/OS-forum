@@ -4,8 +4,9 @@
 		<title>OS Visual Studio</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 		<link rel="stylesheet" href="assets/css/main1.css" />
 	</head>
 
@@ -113,12 +114,34 @@
             </section>
      			<!-- Main -->	
 
+				 <?php
+				$showAlert=false;
+					$method = $_SERVER['REQUEST_METHOD'];
+					if($method=='POST'){
+						$reply = $_POST['reply'];
+
+					$sql = "INSERT INTO `replies` (`reply_content`, `reply_ques_id`, `reply_user_id`, `reply_time`) VALUES ('$reply', '$id', '0', current_timestamp());";
+
+					$result = mysqli_query($conn, $sql);
+					$showAlert=true;
+					if($showAlert)
+					{
+						echo ' <div class="alert alert-success alert-dismissible fade show shadow">
+                        <strong>Success!</strong> Your thread has been added! Please wait for community to respond
+                        <button type="button" class="btn-close" data-bs-dismiss="alert">
+                        </button>
+                  </div>';
+						
+					}
+					}
+				?>
+
 				 <div class="container">
 					<form action="<?php echo $_SERVER['REQUEST_URI'] ?>" method="post" autocomplete="off">
 						<h2 class="py-2">Post a Reply</h2> 
 						<div class="form-group">
 							<label for="exampleFormControlTextarea1">Type your reply</label>
-							<textarea id="message" name="reply" rows="6"></textarea>
+							<textarea id="message" name="reply" rows="6" required></textarea>
 						</div>
 						<input type="submit" value="Submit" />
 					</form>
@@ -194,6 +217,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	</body>
 </html>

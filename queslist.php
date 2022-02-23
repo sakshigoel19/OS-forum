@@ -119,7 +119,7 @@
 						$q_title = $_POST['title'];
         				$q_desc = $_POST['desc'];
 
-					$sql = "INSERT INTO `questions` (`ques_title`, `ques_desc`, `ques_mod_id`, `ques_user_id`, `ask_time`) VALUES ( '$q_title', '$q_desc', '$id', '0', current_timestamp())";
+					$sql = "INSERT INTO `questions` (`ques_title`, `ques_desc`, `ques_mod_id`, `ques_user_id`, `ask_time`) VALUES ('$q_title', '$q_desc', '$id', '0', current_timestamp())";
 
 					$result = mysqli_query($conn, $sql);
 					$showAlert=true;
@@ -137,7 +137,7 @@
      			<!-- Main -->	
 
 					<div class="container">
-					<form action="<?php echo $_SERVER["REQUEST_URI"]?>" method="post">
+					<form action="<?php echo $_SERVER["REQUEST_URI"]?>" method="post" autocomplete="off">
 						<h2 class="py-2">Start a Discussion</h2> 
 						<div class="form-group">
 							<label for="exampleInputEmail1">Problem Title</label>
