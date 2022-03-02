@@ -160,10 +160,11 @@
 								$noResult=false;
 								$id = $row['reply_id'];
         						$content = $row['reply_content'];
-
+								$reply_time = $row['reply_time'];
 								echo '<div class="media">
 								<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
 								  <div class="mt">
+								  Anonymous user at '. $reply_time .'
 								  <p> '. $content . ' </p>
 								</div>
 							  </div>';

@@ -27,6 +27,7 @@
 		<div id="page-wrapper">
 
 			<!-- Header -->
+
 				<header id="header" class="alt">
 					<h1><a href="index.html">OS</a> Visual Studio</h1>
 					<nav id="nav">
@@ -103,6 +104,8 @@
 					</nav>
 				</header>
 
+
+				
 			<!-- Banner -->
 				<section id="banner">
 					<h2><?php echo $modname;?></h2>
@@ -164,15 +167,17 @@
                                 $id = $row['ques_id'];
                                 $title = $row['ques_title'];
                                 $desc = $row['ques_desc']; 
-    
+								$ask_time = $row['ask_time'];
 
-								echo '<div class="media">
+								echo '<blockquote><div class="media">
 								<img  class="img" src="images/avtar.jpg"  class="mr-3" alt="..." >
 								<div class="mta">
-								   <b><a href="question.php?quesid=' . $id. '">'. $title . '</a></b> 
-								  <p> '. $desc . ' </p>
+									Anonymous user at '. $ask_time .'
+									<br>
+								   <b><a style="font-style:normal;" href="question.php?quesid=' . $id. '">'. $title . '</a></b> 
+								  <p style="font-style:normal;"> '. $desc . ' </p>
 								</div>
-							  </div>';
+							  </div></blockquote>';
 							}
 					         
 							if($noResult){
